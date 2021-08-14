@@ -3,55 +3,76 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This class updates the UI based of the status of an ArmHandler.
+/// </summary>
 public class ArmStatus : MonoBehaviour
 {
-    /// <summary>
-    /// OBJECT REFERENCES
-    /// </summary>
-    ///
-    #region
-    [Header("REFERENCES")]
-    //Associated arm
     public ArmHandler arm;
+    [SerializeField] private Text tm;
 
-    //Text mesh reference
-    public Text tm;
-    #endregion
-
-    /// <summary>
-    /// STATUS TEXTS
-    /// </summary>
-    ///
-    #region
-    [Header("TEXT")]
+    [Header("Attachment Text")]
     //Attached text
     public string attached = "ATTACHED";
 
+    [Header("Detachment Text")]
     //Detached text
-    public string dettached = "DETTACHED";
-    #endregion
+    public string dettached = "DETACHED";
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// On object enabled.
+    /// </summary>
+    private void OnEnable()
     {
-        
+        Subscribe(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// On object disabled.
+    /// </summary>
+    private void OnDisable()
     {
-        //Check current status
-        CheckStatus();
+        Subscribe(false);
     }
 
-    //Check arm status based on referenced arm
-    public void CheckStatus()
+    /// <summary>
+    /// Subscribe to ArmHandler events.
+    /// </summary>
+    /// <param name="shouldSubscribe">Should this subscribe or not (unsubscribe)?</param>
+    private void Subscribe(bool shouldSubscribe)
     {
-        //Check current "attached" value
-        if(arm.IsAttached)
+        if(arm)
+        {
+            if (shouldSubscribe)
+            {
+                arm.onAttached += SendArmAttachedMessage;
+                arm.onDetached += SendArmDetachedMessage;
+            }
+            else
+            {
+                arm.onAttached -= SendArmAttachedMessage;
+                arm.onDetached -= SendArmDetachedMessage;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Change text (if necessary) to text stating it IS attached.
+    /// </summary>
+    private void SendArmAttachedMessage()
+    {
+        if(tm.text != attached)
         {
             tm.text = attached;
-        } else
+        }
+    }
+
+    /// <summary>
+    /// Change text (if necessary) to text stating it IS NOT attached.
+    /// </summary>
+    private void SendArmDetachedMessage()
+    {
+        if (tm.text != dettached)
         {
             tm.text = dettached;
         }

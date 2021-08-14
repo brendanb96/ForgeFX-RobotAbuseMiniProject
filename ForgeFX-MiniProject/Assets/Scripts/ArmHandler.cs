@@ -1,243 +1,101 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
+/// <summary>
+/// This class takes input and applies them to an arm.
+/// </summary>
 public class ArmHandler : MonoBehaviour
 {
-    /// <summary>
-    /// POSITIONING PROPERTIES
-    /// </summary>
-    ///
-    #region
-    //Default local position for arm
-    private Vector3 basePos;
+    public delegate void OnAttachmentChange();
+    public OnAttachmentChange onAttached;
+    public OnAttachmentChange onDetached;
 
-    //Drag start
-    private Vector3 dragOffset;
+    [SerializeField] private ArmHighlight highlight;
+    [SerializeField] private ArmMove movement;
 
-    //Whether or not arm is being dragging
-    private bool isDragging = false;
-
-    //Arm distance from body
-    public float ArmDistance
-    {
-        get
-        {
-            return Vector3.Distance(transform.localPosition, basePos);
-        }
-    }
-
-    //Get adjusted input mouse position for world position
+    // Get adjusted input mouse position for world position.
     private Vector3 CurrentMousePosition
     {
         get
         {
-            //Current mouse position
-            Vector3 mousePos = Input.mousePosition; //Get from input
-            mousePos.z = Camera.main.WorldToScreenPoint(transform.position).z; //Adjust z-position to reset depth positioning
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
 
             return Camera.main.ScreenToWorldPoint(mousePos);
         }
     }
-    #endregion
+
+    [HideInInspector] public bool isAttached = true;
 
     /// <summary>
-    /// SNAPPING PROPERTIES
+    /// On mouse over arm.
     /// </summary>
-    ///
-    #region
-    //Tolerance/threshold for snapping
-    [Range(0F, 0.2F)]
-    public float snapThreshold = 0.1F;
-
-    //Whether or not it is detached
-    public bool IsAttached
-    {
-        get
-        {
-            return Mathf.Approximately(ArmDistance, 0F);
-        }
-    }
-
-    #endregion
-
-    /// <summary>
-    /// RENDERING
-    /// </summary>
-    ///
-    #region
-    //Renderer reference
-    private Renderer[] armRends;
-
-    //Default color for arm
-    private Color baseClr;
-
-    //Highlight color value
-    public Color highlightClr = Color.blue;
-
-    //Current color value
-    public Color CurrentColor
-    {
-        get
-        {
-            //Check null reference for renderer
-            if(armRends == null)
-            {
-                return baseClr;
-            }
-
-            //Check arm rend
-            if(armRends.Length < 1)
-            {
-                return baseClr;
-            }
-
-            //Check arm rend
-            if (armRends[0] == null)
-            {
-                return baseClr;
-            }
-
-            //Get current renderer color
-            return armRends[0].material.color;
-        }
-
-        set
-        {
-            //Check null reference for renderer
-            if (armRends != null)
-            {
-                foreach(Renderer rend in armRends)
-                {
-                    rend.material.color = value;
-                }
-            }
-        }
-    }
-    #endregion
-
-    //On object awoken
-    private void Awake()
-    {
-        //Initialize
-        Init();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //Initialize base/default values
-    private void Init()
-    {
-        //Set default base position based on local position
-        basePos = transform.localPosition;
-
-        //Get renderer reference
-        armRends = GetComponentsInChildren<Renderer>();
-
-        //Set default color for arm
-        baseClr = armRends[0].material.color;
-    }
-
-    /// <summary>
-    /// HIGHLIGHTING
-    /// </summary>
-    ///
-    #region
-    //Whether or not to highlight arm
-    public void Highlight(bool isOn)
-    {
-        //Check whether or not it should be highlighted, and apply the corresponding color
-        if (isOn)
-        {
-            CurrentColor = highlightClr;
-        }
-        else
-        {
-            CurrentColor = baseClr;
-        }
-    }
-    #endregion
-
-    /// <summary>
-    /// DRAGGING
-    /// </summary>
-    ///
-    #region
-    //Drag arm
-    public void DragArm()
-    {
-        //Clamp position
-        transform.position = CurrentMousePosition + dragOffset;
-    }
-
-    //Snap arm back in place
-    public void SnapInPlace()
-    {
-        //Set local position to base position
-        transform.localPosition = basePos;
-    }
-    #endregion
-
-    /// <summary>
-    /// BASIC EVENT HANDLING
-    /// </summary>
-    /// 
-    #region
-    //On mouse over arm
     private void OnMouseEnter()
     {
         //Highlight arm
-        Highlight(true);
+        highlight.Highlight(true);
     }
 
-    //On mouse click arm
+    /// <summary>
+    /// On mouse click arm.
+    /// </summary>
     private void OnMouseDown()
     {
         //Drag start position
-        Vector3 dragStart = CurrentMousePosition;
-
-        //Get vector from drag start to current arm position
-        dragOffset = transform.position - dragStart;
-
-        //Set dragging propery
-        isDragging = true;
+        movement.StartDragHere(CurrentMousePosition);
     }
 
-    //On mouse drag / pull arm
+    /// <summary>
+    /// On mouse drag / pull arm.
+    /// </summary>
     private void OnMouseDrag()
     {
         //Drag arm
-        DragArm();
+        movement.DragArm(CurrentMousePosition);
+
+        CheckAttachment();
     }
 
-    //On mouse end drag / release arm
+    /// <summary>
+    /// On mouse release arm.
+    /// </summary>
     private void OnMouseUp()
     {
-        //Check distance of arm to determine if it should snap back in place
-        if(ArmDistance <= snapThreshold)
-        {
-            SnapInPlace();
-        }
+        movement.StopDrag();
 
-        //Reset dragging propery
-        isDragging = false;
+        CheckAttachment();
     }
 
-    //On mouse exit arm
+    /// <summary>
+    /// On mouse exit arm.
+    /// </summary>
     private void OnMouseExit()
     {
         //Unhighlight arm based on whether or not is is being dragged (no dragging -> don't highlight; is dragging -> highlighting persists)
-        Highlight(isDragging);
+        highlight.Highlight(movement.isDragging);
     }
-    #endregion
+
+    /// <summary>
+    /// Check whether or not the arm is still attached. Invoke corresponding delegates.
+    /// </summary>
+    public void CheckAttachment()
+    {
+        bool armCloseToBody = Mathf.Approximately(movement.ArmDistance, 0F);
+
+        if (isAttached != armCloseToBody)
+        {
+            isAttached = armCloseToBody;
+
+            if (isAttached)
+            {
+                onAttached();
+            }
+            else
+            {
+                onDetached();
+            }
+        }
+    }
 }

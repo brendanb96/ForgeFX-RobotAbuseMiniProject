@@ -1,0 +1,146 @@
+Using pre-set license
+
+ COMMAND LINE ARGUMENTS:
+/Volumes/GameDev/2020.3.10f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+/Users/brendanboursiquot/Desktop/WORK/VC/ForgeFX-RobotAbuseMiniProject/ForgeFX-MiniProject
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+52459
+Successfully changed project path to: /Users/brendanboursiquot/Desktop/WORK/VC/ForgeFX-RobotAbuseMiniProject/ForgeFX-MiniProject
+/Users/brendanboursiquot/Desktop/WORK/VC/ForgeFX-RobotAbuseMiniProject/ForgeFX-MiniProject
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 45.32 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.10f1 (297d780c91bc)
+[Subsystems] Discovering subsystems at path /Volumes/GameDev/2020.3.10f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/brendanboursiquot/Desktop/WORK/VC/ForgeFX-RobotAbuseMiniProject/ForgeFX-MiniProject/Assets
+GfxDevice: creating device client; threaded=0
+2021-08-14 16:09:40.443 Unity[22990:157249] Color LCD preferred device: Intel(R) Iris(TM) Plus Graphics 640 (low power)
+2021-08-14 16:09:40.443 Unity[22990:157249] Metal devices available: 1
+2021-08-14 16:09:40.443 Unity[22990:157249] 0: Intel(R) Iris(TM) Plus Graphics 640 (low power)
+2021-08-14 16:09:40.445 Unity[22990:157249] Using device Intel(R) Iris(TM) Plus Graphics 640 (low power)
+Initializing Metal device caps: Intel(R) Iris(TM) Plus Graphics 640
+Initialize mono
+Mono path[0] = '/Volumes/GameDev/2020.3.10f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Volumes/GameDev/2020.3.10f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = '/Volumes/GameDev/2020.3.10f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56990
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Volumes/GameDev/2020.3.10f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: /Volumes/GameDev/2020.3.10f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.049098 seconds.
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 31.91 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  4.654 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.007506 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.60 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.781 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launching external process: /Volumes/GameDev/2020.3.10f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.05 seconds
+Refreshing native plugins compatible for Editor in 0.60 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1493 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 136.8 MB.
+System memory in use after: 136.9 MB.
+
+Unloading 31 unused Assets to reduce memory usage. Loaded Objects now: 1915.
+Total: 2.286415 ms (FindLiveObjects: 0.189324 ms CreateObjectMapping: 0.052135 ms MarkObjects: 1.964488 ms  DeleteObjects: 0.079542 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Scripts/ArmInput.cs
+  artifactKey: Guid(78427dda608da460893e3d3f3bed9c8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/ArmInput.cs using Guid(78427dda608da460893e3d3f3bed9c8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b55ebace7554098dd4c9ab41210f8e8f') in 0.557702 seconds
+  Import took 0.562754 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000388 seconds.
+  path: Assets/Scripts/LinkObject.cs
+  artifactKey: Guid(d6caa6c54bb9647c6beca76c8d51aff1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/LinkObject.cs using Guid(d6caa6c54bb9647c6beca76c8d51aff1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24792befd97fc254377a7bf7e8420baf') in 0.005473 seconds
+  Import took 0.008748 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/Scripts/ArmMove.cs
+  artifactKey: Guid(b329eb97c601b4813971b99f65ca3a23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/ArmMove.cs using Guid(b329eb97c601b4813971b99f65ca3a23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2756848c75737741d9d0ccbdf5e88827') in 0.003813 seconds
+  Import took 0.006313 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002428 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.47 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.251 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.45 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1487 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 141.4 MB.
+System memory in use after: 141.5 MB.
+
+Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 1918.
+Total: 1.889966 ms (FindLiveObjects: 0.153965 ms CreateObjectMapping: 0.046468 ms MarkObjects: 1.670027 ms  DeleteObjects: 0.018400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.026166 seconds.
+  path: Assets/Scripts/ArmHandler.cs
+  artifactKey: Guid(6e54d4648fba84a3dbe43f54c40394c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/ArmHandler.cs using Guid(6e54d4648fba84a3dbe43f54c40394c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7456906bd41a297d123472f9a641cdac') in 0.007979 seconds
+  Import took 0.010314 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000265 seconds.
+  path: Assets/Scripts/ArmHighlight.cs
+  artifactKey: Guid(0e39204044bca4211ae420095beffe09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/ArmHighlight.cs using Guid(0e39204044bca4211ae420095beffe09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56bb1243939e227f29de876aecada62e') in 0.003584 seconds
+  Import took 0.014183 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.562300 seconds.
+  path: Assets/Scripts/ArmStatus.cs
+  artifactKey: Guid(0d94999ae65224c8a83f21cd668e782a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/ArmStatus.cs using Guid(0d94999ae65224c8a83f21cd668e782a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9fa15f7ac8a216f7b317a272e85f1e3b') in 0.004414 seconds
+  Import took 0.007219 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.118637 seconds.
+  path: Assets/Scripts/ArmStatus.cs
+  artifactKey: Guid(0d94999ae65224c8a83f21cd668e782a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/ArmStatus.cs using Guid(0d94999ae65224c8a83f21cd668e782a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9fa15f7ac8a216f7b317a272e85f1e3b') in 0.009362 seconds
+  Import took 0.015032 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

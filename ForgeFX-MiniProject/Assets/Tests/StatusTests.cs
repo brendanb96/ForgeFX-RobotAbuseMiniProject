@@ -6,9 +6,14 @@ using UnityEngine.TestTools;
 
 namespace Tests
 {
+    /// <summary>
+    /// Test for ArmStatus class.
+    /// </summary>
     public class StatusTests
     {
-        // Test whether or not the ArmStatus script references an ArmHandler in the scene
+        /// <summary>
+        /// Test for whether or not the ArmStatus script references an ArmHandler in the scene.
+        /// </summary>
         [Test]
         public void StatusTextDoesReferenceArm()
         {
