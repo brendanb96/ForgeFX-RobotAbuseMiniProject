@@ -15,19 +15,20 @@ namespace Tests
         /// Test for whether or not the ArmStatus script references an ArmHandler in the scene.
         /// </summary>
         [Test]
-        public void StatusTextDoesReferenceArm()
+        public void GrabberStatusTextHasReference()
         {
             // Get arm object in scene
-            var armStatus = GameObject.FindObjectOfType<ArmStatus>();
+            var grabberStatus = GameObject.FindObjectOfType<GrabberStatus>();
 
-            if(armStatus == null)
+            if (grabberStatus == null)
             {
                 //Fail because there is a null reference of the status itself
                 Assert.Fail();
-            } else
+            }
+            else
             {
                 //Check if there is an arm referenced in status object
-                Assert.AreNotEqual(expected: null, actual: armStatus.arm);
+                Assert.AreNotEqual(expected: null, actual: grabberStatus.ActiveGrabber);
             }
         }
     }

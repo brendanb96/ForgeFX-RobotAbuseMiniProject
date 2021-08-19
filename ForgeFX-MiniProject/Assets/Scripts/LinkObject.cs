@@ -3,43 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This class links this object to another.
+/// Injects an object into the transform heirarchy in place of another object. Makes replaced object child of this current one.
 /// </summary>
 public class LinkObject : MonoBehaviour
 {
     // Transform of object to replace and link.
-    [SerializeField] private Transform objectToLink;
+    [SerializeField] private Transform linkTarget;
 
-    /// <summary>
-    /// On object awake.
-    /// </summary>
+    // On object awake
     private void Awake()
     {
-        if(objectToLink)
+        if(linkTarget)
         {
-            ApplyTransformFrom(objectToLink);
+            InsertAsParent(linkTarget);
         }
     }
 
     /// <summary>
-    /// Apply transform values based off a specified transform. Link specified transform as new child object.
+    /// Insert this object as a parent of another specified object.
     /// </summary>
-    /// <param name="obj">Transform to link.</param>
-    private void ApplyTransformFrom(Transform obj)
+    /// <param name="target">Transform to replace.</param>
+    private void InsertAsParent(Transform target)
     {
-        Transform parent = obj.parent;
-
-        Vector3 localPos = obj.localPosition;
-        Quaternion localRot = obj.localRotation;
-
-        // Assign new parent to obj and reset local transform values.
-        obj.SetParent(transform);
-        obj.localPosition = Vector3.zero;
-        obj.localRotation = Quaternion.identity;
-
-        // Change parent of this object to old obj parent.
-        transform.SetParent(parent);
-        transform.localPosition = localPos;
-        transform.localRotation = localRot;
+        transform.SetParent(target.parent);
+        transform.SetPositionAndRotation(target.position, target.rotation);
+        target.SetParent(transform);
     }
 }
